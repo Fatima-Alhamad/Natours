@@ -21,7 +21,6 @@ router.patch(
 );
 router.delete('/deleteMe', userController.deleteMe);
 router.get('/me', userController.getMe, userController.getUser);
-router.get('/my-tours', viewController.getMyTours);
 
 router.use(authController.restrictTo('admin'));
 // implement user routes:

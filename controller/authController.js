@@ -149,7 +149,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   } catch (err) {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
-    console.log(err);
     return next(
       new AppError('something went wrong when sending the email', 500)
     );
@@ -163,8 +162,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     .update(req.params.token)
     .digest('hex');
   // get user based on token :
-  console.log(req.params.token);
-  console.log(hashToken);
   const user = await User.findOne({
     passwordResetToken: hashToken,
     passwordResetExpires: { $gt: Date.now() },
@@ -188,7 +185,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // because we need the password
   const user = await User.findById(req.user._id).select('+password');
-  // console.log(user.password);
 
   if (
     (await user.correctPassword(req.body.currentPassword, user.password)) ===

@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const tourRouter = require('./routes/tourRoutes');
 const app = express();
 const AppError = require('./utiles/appError');
@@ -58,6 +59,7 @@ app.use(cookieParser());
 //     ],
 //   })
 // );
+app.use(compression());
 app.use((req, res, next) => {
   res.set(
     'Content-Security-Policy',

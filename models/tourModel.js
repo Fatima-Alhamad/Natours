@@ -141,10 +141,10 @@ tourSchema.index({ slug: -1 });
 tourSchema.index({ startLocation: '2dsphere' });
 
 // post query middle ware :
-tourSchema.post(/^find/, function (docs, next) {
-  console.log(`the query take ${Date.now() - this.start} ms`);
-  next();
-});
+// tourSchema.post(/^find/, function (docs, next) {
+//   console.log(`the query take ${Date.now() - this.start} ms`);
+//   next();
+// });
 
 // AGGREGATE MIDDLEWARE:
 // tourSchema.pre('aggregate', function (next) {
